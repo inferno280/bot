@@ -1,0 +1,17 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ghostkiller",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "minecraft-server-util": "^1.3.0",
+    "mongoose": "^5.9.18",
+    "ms": "^2.1.2"
+  }
+}
