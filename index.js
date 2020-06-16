@@ -389,6 +389,41 @@ oof.on('message',message=>{
 
 
     switch(args[0]){
+        case 'report':
+            message.delete()
+            if(!args[1]) return message.channel.send('`Usage -report <username> <report>`');
+            if(!args[2]) return message.channel.send('`Usage -report <username> <report>`');
+            let per =message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]))
+            if(!per) return message.reply('Invalid User');
+            let mn = args.slice(2).join(" ");
+            const me = new MessageEmbed()
+            .setTitle("Player Reports")
+            .setThumbnail(message.author.displayAvatarURL(true))
+            .addField('User',message.member.displayName,true)
+            .addField('Reported by',per.displayName,true)
+            .addField('Reason',mn,true)
+            .setFooter(` ${per} has been reported by ${message.author.tag}`);
+            message.channel.send(me);
+            let rChannel = message.guild.channels.cache.find(x => x.name === 'ꜱɴ┇reports');
+            if(!rChannel) return;
+            rChannel.send(me)
+            message.reply(`thanks for reporting ${per.displayName}`)
+            break;
+        case 'bug':
+            message.delete();
+            if(!args[1]) return message.channel.send('`USAGE -bug <bug>`')
+            let bChannel = message.guild.channels.cache.find(x => x.name === 'ꜱɴ┇bugs');
+            if(!bChannel) return;
+            let jk = args.slice(1).join(" ");
+            const mes = new MessageEmbed()
+            .setTitle("Bug Reports")
+            .setThumbnail(message.author.displayAvatarURL(true))
+            .setDescription(jk)
+            .setFooter(`The bug is reported by ${message.author.tag}`);
+            bChannel.send(mes);
+            message.channel.send(mes)
+            message.reply('Thanks for submitting your bug report' );
+            break;
         case 'help':
             const hi = new MessageEmbed()
             .setTitle('help')
