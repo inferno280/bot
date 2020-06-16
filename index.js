@@ -399,8 +399,8 @@ oof.on('message',message=>{
             const me = new MessageEmbed()
             .setTitle("Player Reports")
             .setThumbnail(message.author.displayAvatarURL(true))
-            .addField('User',message.member.displayName,true)
-            .addField('Reported by',per.displayName,true)
+            .addField('User',per.displayName,true)
+            .addField('Reported by',message.member.displayName,true)
             .addField('Reason',mn,true)
             .setFooter(` ${per} has been reported by ${message.author.tag}`);
             message.channel.send(me);
