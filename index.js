@@ -38,14 +38,12 @@ bot.on('messagereactionroleadd',(messageReaction,user) => {
 
 bot.on('guildMemberAdd',function(member){
     member.send('Welcome to the server!')
-    let memberrole = member.guild.roles.cache.find(role => role.name === 'member');
+    let memberrole = member.guild.roles.cache.find(role => role.name === 'Member');
     member.roles.add(memberrole);
 });
 bot.on('message',message=>{
    
-    if(message.content === 'hello'){
-        message.reply('HELLO FRIEND!');
-    } 
+    
 
     let args = message.content.substring(PREFIX.length).split(" ");
 
@@ -184,7 +182,7 @@ bot.on('message',message=>{
             message.delete();
             let person =message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]))
             if(!person) return message.reply('Please send a valid username to mute');
-            let mainrole = message.guild.roles.cache.find(role => role.name === 'member');
+            let mainrole = message.guild.roles.cache.find(role => role.name === 'Member');
             let muterole = message.guild.roles.cache.find(role => role.name === 'Muted');
 
             if(!muterole) return message.reply('There is no muted role present in the server')
@@ -231,7 +229,7 @@ bot.on('message',message=>{
             let pers =message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]))
             if(!pers) return message.reply('please enter a valid username(who is there in the server');
             let mainrol = message.guild.roles.cache.find(role => role.name === 'member');
-            let muterol = message.guild.roles.cache.find(role => role.name === 'muted');
+            let muterol = message.guild.roles.cache.find(role => role.name === 'Muted');
 
            if( pers.roles.cache.find(role => role.name === 'Muted')){
                
