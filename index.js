@@ -528,7 +528,7 @@ oof.on('message',message=>{
             break;
         case 'coinflip':
             message.delete();
-            const win = 'Vistory';
+            const win = 'Victory';
             const lose = 'Defeat';
             var choices =[
                 "heads",
@@ -539,6 +539,7 @@ oof.on('message',message=>{
                 if(output === args[1]){
                     
                     const lm = new MessageEmbed()
+                    .setThumbnail(message.author.displayAvatarURL(true))
                     .setTitle('Games')
                     .addField('You chose',args[1],true)
                     .addField('Output',output)
@@ -548,6 +549,7 @@ oof.on('message',message=>{
                 else{
                    
                     const lk = new MessageEmbed()
+                    .setThumbnail(message.author.displayAvatarURL(true))
                     .setTitle('Games')
                     .addField('You chose',args[1],true)
                     .addField('Output',output)
@@ -563,7 +565,7 @@ oof.on('message',message=>{
                     .setTitle('Games')
                     .addField('You chose',args[1],true)
                     .addField('Output',output)
-                    
+                    .setThumbnail(message.author.displayAvatarURL(true))
                     .addField('Result',win,true)
                     message.channel.send(lo);
                 }
@@ -573,7 +575,7 @@ oof.on('message',message=>{
                     .setTitle('Games')
                     .addField('You chose',args[1],true)
                     .addField('Output',output)
-                    
+                    .setThumbnail(message.author.displayAvatarURL(true))
                     .addField('Result',lose,true)
                     message.channel.send(lp);
                 }
