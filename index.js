@@ -51,10 +51,12 @@ bot.on('message',message=>{
     switch (args[0]){
         case 'info':
             const embed = new Discord.MessageEmbed()
-            .setTitle('user information')
-            .addField('Player Name',message.author.username,true)
-            .addField('owner',message.guild.owner,true)
-            .addField('current server', message.guild.name,true)
+            .setTitle('**User Information**')
+            .setThumbnail(message.author.displayAvatarURL(true))
+            .addField('**Name**',message.author.username,true)
+            .addField('**Roles**',user.roles,true)
+            .addField('Created at',user.createdAt,true)
+            .addField('Joined at',GuildMember.joinedAt,true)
             .setColor(0xF1C40F)
             .setThumbnail(message.author.avatarURL(true))
             message.channel.send(embed);
@@ -585,6 +587,8 @@ oof.on('message',message=>{
                 .then(message.channel.send('```Usage -coinflip <heads/tails>```'));
             }
             break;
+        
+
             
 
     }
