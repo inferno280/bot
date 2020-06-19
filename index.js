@@ -8,6 +8,8 @@ const moongose = require('mongoose')
 const ping = require('minecraft-server-util');
 const { error } = require('console');
 const { waitForDebugger } = require('inspector');
+const { connect } = require('http2');
+var usertickets = new Map();
 
 moongose.connect("mongodb+srv://cutcopy:resone@cluster0-ycwow.mongodb.net/cutcopy?retryWrites=true&w=majority",{
     useUnifiedTopology: true,
@@ -43,6 +45,63 @@ bot.on('guildMemberAdd',function(member){
     member.roles.add(memberrole);
 });
 bot.on('message',message=>{
+    if(message.channel.type("dm") ) return;
+    if(message.author.bot) return;
+    var mn = 1;
+    if(message.content === '-new' && message.channel.id == 722310931274661928 ){
+        let guild = message.guild;
+        if(usertickets.has(message.author.id) || message.guild.channels.cache.some(channel => channel.name.toLowerCase === message.author.username + '-ticket')){
+            message.member.send('You can open only one ticket at the same time');
+
+        }
+        else {
+            guild.channels.create(`${message.author.username}-ticket`,{
+                type: 'text',
+                permissionOverwrites: [
+                    {
+                        allow: 'VIEW_CHANNEL',
+                        id: message.author.id
+                    },
+                    {
+                        deny: 'VIEW_CHANNEL',
+                        id: guild.id
+                    },
+                    {
+                        allow: 'VIEW_CHANNEL',
+                        id: '700678248538832897'
+                    }
+                ]
+            }).then(ch =>{
+                console.log('Created a ticket named '+ ch.name)
+                usertickets.set(message.author.id, ch.id);
+                console.log(usertickets);
+            }).catch (err => {console.log(err)});
+        }
+    }else if (message.content === '-close'){
+        console.log(usertickets);
+        if(usertickets.has(message.author.id) ){
+            if(message.channel.id == usertickets.get(message.author.id)){
+                message.channel.delete('Closing ticket')
+                .then(channel =>{
+                 console.log('Deleted ' + channel.name);
+                 usertickets.delete(message.author.id);
+                 })
+                .catch(err =>console.log(err));
+            }
+        }
+        if(message.guild.channels.cache.some(channel => channel.name.toLowerCase === message.author.username + '-ticket')){
+            message.guild.channels.cache.forEach(channel =>{
+                if(message.guild.channels.cache.some(channel => channel.name.toLowerCase === message.author.username + '-ticket')){
+                    message.channel.delete('Closing ticket')
+                    .then(ch =>{
+                     console.log('Deleted ' + ch.id);
+                     usertickets.delete(message.author.id);
+                     })
+                    .catch(err =>console.log(err));
+                }
+            })
+        }
+    }
    
     
 
