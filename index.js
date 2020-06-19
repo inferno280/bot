@@ -54,7 +54,7 @@ bot.on('message',message=>{
             .setTitle('**User Information**')
             .setThumbnail(message.author.displayAvatarURL(true))
             .addField('**Name**',message.author.username,true)
-            .addField('**Roles**',message.member.guild.roles,true)
+            .addField('**Roles**',message.member.roles.cache,true)
             .addField('Created at',message.author.createdAt,true)
             .addField('Joined at',message.member.joinedAt,true)
             .setColor(0xF1C40F)
