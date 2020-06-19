@@ -54,7 +54,7 @@ bot.on('message',message=>{
             .setTitle('**User Information**')
             .setThumbnail(message.author.displayAvatarURL(true))
             .addField('**Name**',message.author.username,true)
-            .addField('**Roles**',message.member.roles,true)
+            .addField('**Roles**',message.member.guild.roles,true)
             .addField('Created at',message.author.createdAt,true)
             .addField('Joined at',message.member.joinedAt,true)
             .setColor(0xF1C40F)
@@ -64,7 +64,8 @@ bot.on('message',message=>{
         case 'ping':
             var ping = Date.now() - message.createdTimestamp + " ms";
             const emb = new Discord.MessageEmbed()
-            .addField('pong',ping)
+            .addField("Ping/Latency",ping)
+            .setColor(0xF1C40F)
             message.channel.send(emb);
             break;
             
