@@ -20,7 +20,7 @@ moongose.connect("mongodb+srv://cutcopy:resone@cluster0-ycwow.mongodb.net/cutcop
 
 
 
-var PREFIX  = '-';
+const  PREFIX  = '-';
 
 oof.on('ready',() =>{
     console.log('bot is ready and online!')
@@ -54,16 +54,17 @@ bot.on('message',message=>{
             .setTitle('**User Information**')
             .setThumbnail(message.author.displayAvatarURL(true))
             .addField('**Name**',message.author.username,true)
-            .addField('**Roles**',user.roles,true)
-            .addField('Created at',user.createdAt,true)
-            .addField('Joined at',GuildMember.joinedAt,true)
+            .addField('**Roles**',message.member.roles,true)
+            .addField('Created at',message.author.createdAt,true)
+            .addField('Joined at',message.member.joinedAt,true)
             .setColor(0xF1C40F)
             .setThumbnail(message.author.avatarURL(true))
             message.channel.send(embed);
             break;
         case 'ping':
+            var ping = Date.now() - message.createdTimestamp + " ms";
             const emb = new Discord.MessageEmbed()
-            .addField('pong',message.author.tag)
+            .addField('pong',ping)
             message.channel.send(emb);
             break;
             
