@@ -72,7 +72,7 @@ bot.on('message',message=>{
             
         case 'clear':
             
-            if(message.member.roles.cache.find(role => role.name ==='Admin') || message.member.roles.cache.find(role => role.name ==='Staff')|| message.member.roles.cache.find(role => role.name === 'Owner') ) {
+            if(message.member.roles.cache.find(role => role.name ==='Admin') || message.member.roles.cache.find(role => role.name ==='Support Team')|| message.member.roles.cache.find(role => role.name === 'Owner') ) {
               
                 if(!args[1]){
                     const em = new Discord.MessageEmbed()
@@ -184,7 +184,7 @@ bot.on('message',message=>{
             }
             break; 
         case 'mute':
-            if(message.member.roles.cache.find(role => role.name === 'Staff')){
+            if(message.member.roles.cache.find(role => role.name === 'Support Team')){
             message.delete();
             let person =message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]))
             if(!person) return message.reply('Please send a valid username to mute');
@@ -229,7 +229,7 @@ bot.on('message',message=>{
         }
             break;
         case 'unmute':
-            if(message.member.roles.cache.find(role => role.name === 'staff')){
+            if(message.member.roles.cache.find(role => role.name === 'Support Team')){
             message.delete();
             if(!args[1]) return message.reply('please mesntion a user to unmuted')
             let pers =message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]))
