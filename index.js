@@ -57,6 +57,7 @@ bot.on('message',message=>{
         else {
             guild.channels.create(`${message.author.username}-ticket`,{
                 type: 'text',
+                category: 'ꜱɴ┇💠TICKETS💠',
                 permissionOverwrites: [
                     {
                         allow: 'VIEW_CHANNEL',
@@ -70,10 +71,12 @@ bot.on('message',message=>{
                         allow: 'VIEW_CHANNEL',
                         id: '700678248538832897'
                     }
+                   
                 ]
             }).then(ch =>{
                 console.log('Created a ticket named '+ ch.name)
                 usertickets.set(message.author.id, ch.id);
+                message.channel.send(`your ticket has been created in #${message.author.username}-ticket`)
                 console.log(usertickets);
             }).catch (err => {console.log(err)});
         }
