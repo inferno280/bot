@@ -45,9 +45,9 @@ bot.on('guildMemberAdd',function(member){
     member.roles.add(memberrole);
 });
 bot.on('message',message=>{
-    if(message.channel.type("dm") ) return;
-    if(message.author.bot) return;
-    var mn = 1;
+    
+    
+   
     if(message.content === '-new' && message.channel.id == 722310931274661928 ){
         let guild = message.guild;
         if(usertickets.has(message.author.id) || message.guild.channels.cache.some(channel => channel.name.toLowerCase === message.author.username + '-ticket')){
