@@ -45,7 +45,15 @@ bot.on('guildMemberAdd',function(member){
     member.roles.add(memberrole);
 });
 bot.on('message',message=>{
-    
+
+    for( var n = 0; n <= args.length;n++){
+    if(args[n] === 'Fuck' || (args[n] === 'fk')){
+        if(message.member.roles.cache.find(role => role.name === 'Support Team')) return;
+        message.delete();
+        message.channel.send('This word is blacklisted');
+    }
+     
+}
     
    
     if(message.content === '-new' && message.channel.id == 722310931274661928 ){
@@ -57,7 +65,7 @@ bot.on('message',message=>{
         else {
             guild.channels.create(`${message.author.username}-ticket`,{
                 type: 'text',
-                category: 'ꜱɴ┇💠TICKETS💠',
+            
                 permissionOverwrites: [
                     {
                         allow: 'VIEW_CHANNEL',
